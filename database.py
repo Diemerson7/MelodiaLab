@@ -60,6 +60,26 @@ def fazer_login(formulario):
         return resultado_verificacao
 
 
+def criar_musica(nome, artista, status, letra, caminho_capa, email):
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+    cursor.execute('''INSERT INTO projetos_musicais (nome_musica, artista, status, letra, caminho_capa, email) 
+                   VALUES (?, ?, ?, ?, ?, ?)''', (nome, artista, status, letra, caminho_capa, email))
+    conexao.commit()
+    cursor.close()
+    
+    
+def selecionar_musicas(email):
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+    cursor.execute('''SELECT * FROM projetos_musicais WHERE email=?''', (email,))
+    return cursor.fetchall()
+
+def selecionar_musicas(id):
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+    cursor.execute('''SELECT * FROM projetos_musicais WHERE id=?''', (id,))
+    return cursor.fetchall()
 
 
 

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar</title>
+</head>
+<body>
+    <label for="nome">Alterar o Nome</label>
+                <input type="text" id="nome" name="nome" required value="{{musica[1]}}">
+        
+                <label for="artista">Alterar o Artista Da Música</label>
+                <input type="text" id="artista" name="artista" required value="{{musica[2]}}" >
+        
+                <label for="status">Alterar o Status Da Música</label>
+                <input type="text" id="status" name="status" required value="{{musica[3]}}">
+        
+                <label for="letra">Alterar a Letra Da Música</label>
+                <textarea name="letra" id="">{{musica[4]}}</textarea>
+        
+                <label for="imagem">Escolha Uma Imagem Para Enviar:</label>
+                <input type="file" id="imagem" name="imagem" accept="image/*" >
+            </div>
+            <div class="botoes"> 
+                <button type="submit" class="btn">Concluir Edição</button>
+                <a href="/excluir_musica/{{musica[0]}}">Excluir Musica</a>
+            </div>
+</body>
+</html>
