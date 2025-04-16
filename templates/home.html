@@ -13,6 +13,7 @@
 
   <div class="botoes">
     <a href="/criar_musica"> + Criar uma música</a>
+    <a href="/deletar_conta"> Excluir conta</a>
   </div>
 
   <!-- Seção de "Minhas Criações" -->
@@ -25,20 +26,15 @@
       {% for musica in musicas  %}
       <a href="/editar/{{musica[0]}}">
       <div class="card">
-        <img src="/static/img/capa2.jpeg" alt="Capa do Projeto" class="cover">
+        <img src="{{musica[5]}}" alt="Capa do Projeto" class="cover">
         <div class="card-content">
           <h3>Nome da Música {{musica[1]}} </h3>
           <p>Artista {{musica[2]}} </p>
           <p>Status {{musica[3]}} </p>
-          <p>Letra </p>
+          <p>Letra {{musica[4]}} </p>
         </div>
       </div>
       </a>
-
-
-
-
-
       {% endfor %}
 
       <!-- Mais cards podem ser adicionados aqui -->

@@ -75,11 +75,42 @@ def selecionar_musicas(email):
     cursor.execute('''SELECT * FROM projetos_musicais WHERE email=?''', (email,))
     return cursor.fetchall()
 
-def selecionar_musicas(id):
+def selecionar_musica(id):
     conexao = conectar_banco()
     cursor = conexao.cursor()
-    cursor.execute('''SELECT * FROM projetos_musicais WHERE id=?''', (id,))
-    return cursor.fetchall()
+    cursor.execute('''SELECT id FROM projetos_musicais WHERE id=?''', (id,))
+    return cursor.fetchone()
+
+
+def excluir_musica(id):
+    print(id)
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+    cursor.execute('''DELETE FROM projetos_musicais WHERE id=?''', (id,))
+    conexao.commit()
+    cursor.close()
+
+def editar_musica(nome, artista, status, letra, caminho_capa, id):
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+    cursor.execute('''UPDATE projetos_musicais SET nome_musica=?, artista=?, status=?, letra=?, caminho_capa=? WHERE id=?''', (nome, artista, status, letra, caminho_capa, id))
+    conexao.commit()
+    cursor.close()
+    
+def deletar_usuario(email):
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+    cursor.execute('''DELETE FROM usuarios WHERE email=?''', (email,))
+    cursor.execute('''DELETE FROM projetos_musicais WHERE email=?''', (email,))
+    conexao.commit()
+    cursor.close()
+    
+    
+
+
+
+
+
 
 
 

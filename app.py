@@ -27,6 +27,7 @@ def login():
 @app.route('/home')
 def home():
     musicas = database.selecionar_musicas(session['email'])
+    print(musicas)
     return render_template('home.html', musicas = musicas)
 
 
@@ -57,17 +58,36 @@ def criar_musica():
         
         database.criar_musica(nome, artista, status, letra, caminho_capa, session['email'])
         musicas = database.selecionar_musicas(session['email'])
-        return redirect('/home')
+        return redirect(url_for('home'))
     
 @app.route('/editar/<id>', methods=["GET", "POST"])
 def editar(id):
     if request.method=="GET":
-        return render_template('editar.html')
+        musica = database.selecionar_musica(id)
+        return render_template('editar.html', musica = musica)
 
 
+@app.route('/excluir_musica/<id>')
+def excluir(id):
+    print(id[0])
+    database.excluir_musica(id[0])
+    return redirect('/home')
 
-
-
+@app.route('/editar_musicas/<id>', methods=["POST"])
+def editar_musica(id):
+    if request.method == "POST":
+        nome = request.form['nome']
+        artista = request.form['artista']
+        status = request.form['status']
+        caminho_capa = request.form['caminho_capa'] 
+        letra = request.form['letra']
+        database.editar_musica(nome, artista, status, letra, caminho_capa, id)
+        return redirect('/home')
+              
+@app.route('/deletar_conta')
+def deletar_conta():
+    database.deletar_usuario(session['email'])
+    return redirect('/')
 
 
 

@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/estilo.css">
     <title>Editar</title>
 </head>
 <body>
-    <label for="nome">Alterar o Nome</label>
+    <div class="caixa-de-login">
+        <h2>Editar Musica</h2>
+        <form action="/editar_musicas/{{musica[0]}}" method="POST">
+            <div class="form-group column">
+                <label for="nome">Alterar o Nome</label>
                 <input type="text" id="nome" name="nome" required value="{{musica[1]}}">
         
                 <label for="artista">Alterar o Artista Da Música</label>
@@ -16,14 +21,21 @@
                 <input type="text" id="status" name="status" required value="{{musica[3]}}">
         
                 <label for="letra">Alterar a Letra Da Música</label>
-                <textarea name="letra" id="">{{musica[4]}}</textarea>
+                <input type="text" id="letra" name="letra" required value="{{musica[4]}}">
         
-                <label for="imagem">Escolha Uma Imagem Para Enviar:</label>
-                <input type="file" id="imagem" name="imagem" accept="image/*" >
+                <label for="letra">Alterar Capa da Música</label>
+                <input type="text" id="caminho_capa" name="caminho_capa" required value="{{musica[5]}}">
+                
             </div>
             <div class="botoes"> 
                 <button type="submit" class="btn">Concluir Edição</button>
                 <a href="/excluir_musica/{{musica[0]}}">Excluir Musica</a>
             </div>
+        
+            
+        </form>
+        
+    </div>
+
 </body>
 </html>
